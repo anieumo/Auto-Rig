@@ -1,0 +1,100 @@
+import maya.cmds as cmds
+
+window = cmds.window(title="Test Window")
+layout = cmds.columnLayout(adjustableColumn=True)
+sliderGrp1 = maya.cmds.intSliderGrp(label="Arm Length", min=3, max = 20, field=True)
+maya.cmds.separator(h=10)
+sliderGrp2 = maya.cmds.intSliderGrp(label="Spine Length", min=3, max = 5, field=True)
+
+
+cmds.showWindow(window)
+def legs():
+    cmds.selecdct( d=True )
+    cmds.joint( name='hip', p=(0, 27, 0) )
+    cmds.joint( name='left_leg', p=(8, 20, 0) )
+    cmds.joint( name='left_knee', p=(8, 10, 0)  )
+    cmds.joint( name='left_foot', p=(8, 0, 0) )
+
+
+    cmds.select( d=True )
+    cmds.joint( name='right_leg', p=(-8, 20, 0) )
+    cmds.joint( name='right_knee', p=(-8, 10, 0)  )
+    cmds.joint( name='right_foot', p=(-8, 0, 0) )
+legs()
+
+def feet():
+    cmds.select('right_foot', replace=True)
+    k = 3
+    for i in range(0, 3):
+        k = k + 2
+        cmds.joint(name='right_foot{0}'.format(i+1), p=(-8, 0, -k))
+    
+    k = 3
+    cmds.select('left_foot', replace=True)
+    for i in range(0, 3):
+        k = k + 2
+        cmds.joint(name='left_foot{0}'.format(i+1), p=(8, 0, -k))
+feet()
+
+cmds.parent('right_leg', 'hip')
+
+def spine(joints, tweenspinelength):
+    cmds.select( d=True )
+    k = 27
+    for i in range(0, joints):
+        k = k + tweenspinelength
+        cmds.joint(name='spine{0}'.format(i+1), p=(0, k, 0))
+spine(5, 5)
+
+def arms(armlength):
+    cmds.select('spine3', replace=True)
+    x = 0
+    y = 45
+    for i in range(0, 3):
+        x = x - armlength
+        y = y - 3
+        cmds.joint(name='left_arm{0}'.format(i+1), p=(x, y, 0))
+        
+    cmds.select('spine3', replace=True)
+    x = 0
+    y = 45
+    for i in range(0, 3):
+        x = x - armlength
+        y = y - 3
+        cmds.joint(name='right_arm{0}'.format(i+1), p=(-x, y, 0))
+arms(11)
+cmds.parent('hip', 'spine1'
+
+
+
+
+
+
+
+
+
+for ($i = 0; $i <= $jnt_count; $i++)
+{
+int $attr1 = `getAttr ($joints[$i]+".rotateX")`;
+int $attr2 = `getAttr ($joints[$i]+".rotateY")`;
+int $attr3 = `getAttr ($joints[$i]+".rotateZ")`;
+}
+
+sel = cmds.ls(selection=True)
+    for item in sel:
+        cmds.select(clear=True)
+        cmds.select(item)
+        mel.eval("pickWalk -d down")
+        jointSel = cmds.ls(selection=True)
+
+
+pickWalk -d down;
+      string $mySelection[] = `ls -selection`;
+
+string $mySelections[]=ls -sl -type joint;
+for($i = 0; 
+	// print the node name
+	print( $mySelection + "\n" );
+    }
+//create an array that 
+        
